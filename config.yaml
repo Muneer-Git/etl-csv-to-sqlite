@@ -1,0 +1,9 @@
+warehouse: warehouse.db
+sources:
+  - name: sales
+    path: data/sales.csv
+    table: sales_raw
+transforms:
+  - sql: |
+      CREATE TABLE IF NOT EXISTS sales AS
+      SELECT date, product, qty, price, (qty*price) AS revenue FROM sales_raw;
